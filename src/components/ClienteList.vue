@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Lista de Clientes</h2>
+    <h2 class="mr-200">Lista de Clientes</h2>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -62,7 +62,14 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  align-items: center;
+  text-align: center;
+  color: green;
+}
 .table {
-  margin-top: 20px;
+  margin: 20px 80px auto;
+  width: 800px auto;
+  max-width: 90%;
 }
 </style>

@@ -1,21 +1,24 @@
 <template>
   <div>
-    <h2>{{ isEdit ? 'Editar Cliente' : 'Cadastro de Cliente' }}</h2>
+    <div class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">{{ isEdit ? 'Editar Cliente' : 'Cadastro de Cliente' }}</span>
+      </div>
+    </div>
+    <!-- <h2>{{ isEdit ? 'Editar Cliente' : 'Cadastro de Cliente' }}</h2> -->
     <form @submit.prevent="submitForm">
+      <img src="@/assets/cliente.png" alt="">
       <div>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" v-model="cliente.nome" />
+        <input type="text" id="nome" v-model="cliente.nome" class="form-control" placeholder="Nome" />
       </div>
       <div>
-        <label for="idade">Idade:</label>
-        <input type="text" id="idade" v-model="cliente.idade" />
+        <input type="text" id="idade" v-model="cliente.idade" class="form-control" placeholder="Idade" />
       </div>
       <div>
-        <label for="cidade">Cidade:</label>
-        <input type="text" id="cidade" v-model="cliente.cidade" />
+        <input type="text" id="cidade" v-model="cliente.cidade" class="form-control" placeholder="Cidade" />
       </div>
-      <button type="submit">{{ isEdit ? 'Salvar' : 'Cadastrar' }}</button>
-      <button v-if="isEdit" @click="cancelEdit">Cancelar</button>
+      <button type="submit" class="btn btn-secondary m-2">{{ isEdit ? 'Salvar' : 'Cadastrar' }}</button>
+      <button v-if="isEdit" @click="cancelEdit" class="btn btn-warning">Cancelar</button>
     </form>
   </div>
 </template>
@@ -68,3 +71,26 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+img {
+  width: 250px;
+  margin-bottom: 30px;
+}
+
+form {
+  width: 500px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+input[type="button"] {
+  margin-right: 10px;
+}
+
+</style>
