@@ -7,6 +7,7 @@
           <th scope="col">Nome</th>
           <th scope="col">Idade</th>
           <th scope="col">Cidade</th>
+          <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -14,6 +15,10 @@
           <td>{{ cliente.nome }}</td>
           <td>{{ cliente.idade }}</td>
           <td>{{ cliente.cidade }}</td>
+          <td>
+            <button class="btn btn-primary" @click="editCliente(cliente)">Editar</button>
+            <button class="btn btn-danger" @click="deleteCliente(cliente.id)">Excluir</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -39,6 +44,17 @@ export default {
         this.clientes = response.data;
       } catch (error) {
         console.error('Erro ao buscar clientes:', error);
+      }
+    },
+    editCliente(cliente) {
+      this.$emit('edit-cliente', cliente);
+    },
+    async deleteCliente(id) {
+      try {
+        await axios.delete(`http://localhost:8080/cliente/${id}`);
+        this.fetchClientes();
+      } catch (error) {
+        console.error('Erro ao excluir cliente:', error);
       }
     },
   },

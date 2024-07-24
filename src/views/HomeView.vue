@@ -1,7 +1,10 @@
 <template>
   <main>
-    <ClienteForm @cliente-cadastrado="refreshClientes" />
-    <ClienteList ref="clienteList"/>
+    <ClienteForm 
+      @cliente-cadastrado="refreshClientes" 
+      @cancel-edit="clearEditCliente" :clienteToEdit="clienteToEdit"
+    />
+    <ClienteList ref="clienteList" @edit-cliente="editCliente"/>
   </main>
 </template>
 
@@ -15,9 +18,20 @@ export default {
     ClienteForm,
     ClienteList
   },
+  data() {
+    return {
+      clienteToEdit: null,
+    };
+  },
   methods: {
     refreshClientes() {
       this.$refs.clienteList.fetchClientes(); // Chama o método fetchClientes do componente ClienteList para atualizar a lista de clientes
+    },
+    editCliente(cliente) {
+      this.clienteToEdit = cliente; // Define o cliente a ser editado
+    },
+    clearEditCliente() {
+      this.clienteToEdit = null;
     },
   },
 }
